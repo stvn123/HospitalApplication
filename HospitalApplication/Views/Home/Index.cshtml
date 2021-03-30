@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model IEnumerable<HospitalApplication.API.APIModels.IllnessWrapper>
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Please select one of the options below.</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        @{
+            foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <a class="card card-small" href="#" data-toggle="modal" data-target="#detailModal" data-illness='{"id": @item.Illness.Id, "name":"@item.Illness.Name" }'>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="card-body">
+                                        <h5 class="card-title">@item.Illness.Name</h5>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="right-align-with-margin"><i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i></div>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </a>
+                    <br />
+                </div>
+            }
+        }
+
+    </div>
+</div>
+
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailModalLabel">Additional details:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Enter your name: </p>
+                <input type="text" id="patientName" class="form-control" placeholder="Enter your name" />
+
+                <br />
+
+                <p>Select severity level for: </p><p id="illnessName"></p>
+                <label>
+                    <input type="radio" name="illnessLevel" value="0" checked>
+                    <img width="50" height="50" src="~/Images/0.png" />
+                </label>
+                <label>
+                    <input type="radio" name="illnessLevel" value="1">
+                    <img width="50" height="50" src="~/Images/1.png" />
+                </label>
+                <label>
+                    <input type="radio" name="illnessLevel" value="2">
+                    <img width="50" height="50" src="~/Images/2.png" />
+                </label>
+                <label>
+                    <input type="radio" name="illnessLevel" value="3">
+                    <img width="50" height="50" src="~/Images/3.png" />
+                </label>
+                <label>
+                    <input type="radio" name="illnessLevel" value="4">
+                    <img width="50" height="50" src="~/Images/4.png" />
+                </label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnOK">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Index.js"></script>
